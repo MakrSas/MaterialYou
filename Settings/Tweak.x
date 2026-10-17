@@ -23,7 +23,7 @@ static UIImage *ThemedIcon(void) {
     NSDictionary *t = d ? [NSJSONSerialization JSONObjectWithData:d options:0 error:nil] : nil;
     NSDictionary *c = [t[@"colors"] isKindOfClass:NSDictionary.class] ? t[@"colors"] : @{};
     BOOL dark = UIScreen.mainScreen.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
-    UIColor *bg = ThemeColor(c, @"primary", dark, 0x4C5E8B), *fg = ThemeColor(c, @"accent1_200", dark, 0xB8C6EE); // lighter accent (tone 80)
+    UIColor *bg = ThemeColor(c, @"primary", NO, 0x4C5E8B), *fg = ThemeColor(c, @"accent1_200", dark, 0xB8C6EE); // lighter accent (tone 80)
     CGFloat S = 29;
     UIGraphicsImageRenderer *r = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(S, S)];
     return [r imageWithActions:^(UIGraphicsImageRendererContext *ctx) {
