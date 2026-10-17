@@ -1,5 +1,5 @@
 export THEOS_PACKAGE_SCHEME = rootless
-ARCHS = arm64
+ARCHS = arm64 arm64e
 include $(THEOS)/makefiles/common.mk
 BUNDLE_NAME = MaterialYouPrefs
 S = ..
