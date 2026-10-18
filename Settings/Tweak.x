@@ -19,7 +19,9 @@ static UIColor *ThemeColor(NSDictionary *c, NSString *token, BOOL dark, unsigned
 // M3 Expressive "Sunny" shape (8 soft lobes, androidx.graphics.shapes MaterialShapes;
 // approximated as r = R(0.86 + 0.14 cos 8t)) in on_primary and a primary_container core.
 static UIImage *ThemedIcon(void) {
-    NSData *d = [NSData dataWithContentsOfFile:@"/var/mobile/Library/MaterialYou/theme.json"];
+    CFPreferencesAppSynchronize(CFSTR("com.makr.materialyou"));
+    id pd = CFBridgingRelease(CFPreferencesCopyAppValue(CFSTR("themeJSON"), CFSTR("com.makr.materialyou")));
+    NSData *d = [pd isKindOfClass:NSData.class] ? pd : [NSData dataWithContentsOfFile:@"/var/mobile/Library/MaterialYou/theme.json"];
     NSDictionary *t = d ? [NSJSONSerialization JSONObjectWithData:d options:0 error:nil] : nil;
     NSDictionary *c = [t[@"colors"] isKindOfClass:NSDictionary.class] ? t[@"colors"] : @{};
     BOOL dark = UIScreen.mainScreen.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
