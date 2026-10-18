@@ -1,3 +1,4 @@
+#import <dlfcn.h>
 // Settings > Material You: hosts the Android 17 Colors picker (LQSColorsViewController).
 #import <UIKit/UIKit.h>
 #import "LQSColorsViewController.h"
@@ -11,13 +12,19 @@
 @interface MYColorsController : PSViewController
 @end
 
+static NSString *LQSJBPath(NSString *path) {
+    const char *(*jbroot)(const char *) = (const char *(*)(const char *))dlsym(RTLD_DEFAULT, "jbroot");
+    const char *r = jbroot ? jbroot(path.fileSystemRepresentation) : NULL;
+    return r ? @(r) : [@"/var/jb" stringByAppendingString:path];
+}
+
 @implementation MYColorsController {
     LQSColorsViewController *_colors;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *root = nil;
-    for (NSString *p in @[@"/var/jb/Library/Application Support/MaterialYou", @"/Library/Application Support/MaterialYou"])
+    for (NSString *p in @[LQSJBPath(@"/Library/Application Support/MaterialYou"), @"/Library/Application Support/MaterialYou"])
         if ([[NSFileManager defaultManager] fileExistsAtPath:p]) { root = p; break; }
     if (root) {
         [LQSTheme setResourceRoot:root];

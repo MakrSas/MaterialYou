@@ -5,6 +5,6 @@ Architecture: iphoneos-arm64
 Description: Android 17 Material You colours for iOS 16: wallpaper colours, custom colour, theme styles. Shared by LineageQS and Trebuchet.
 Maintainer: makr
 Author: makr
-Section: Lineage
+Section: Test
 Depends: mobilesubstrate, preferenceloader
 Icon: https://makrsas.github.io/repo/icons/materialyou.png

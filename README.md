@@ -18,3 +18,9 @@ Android 17 Material You colours for jailbroken iOS 16 (rootless). The customisat
 Theos, iOS 16.5 SDK: `./build.sh` → `packages/*.deb`.
 
 Apache License 2.0, see NOTICE.
+
+## roothide branch
+
+This branch builds for roothide (Procursus roothide, Nyxian "Procursus Jailed"):
+build as usual with `build.sh`, then `scripts/roothide.sh packages/<pkg>_iphoneos-arm64.deb`
+produces the `iphoneos-arm64e` package.
