@@ -1,6 +1,6 @@
 Package: com.makr.materialyou
 Name: Material You
-Version: 1.0.7
+Version: 1.0.8
 Architecture: iphoneos-arm64
 Description: Android 17 Material You colours for iOS 16: wallpaper colours, custom colour, theme styles. Shared by LineageQS and Trebuchet.
 Maintainer: makr
