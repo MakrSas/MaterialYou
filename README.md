@@ -7,6 +7,8 @@ Android 17 Material You colours for jailbroken iOS 16 (rootless). The customisat
   a custom colour on a hue slider, Neutral / Soft / Bright / Bold styles, and a dark theme switch.
 - Palettes are exact output of Google's libmonet (SPEC_2026), precomputed per hue and style (`Resources/monet_table.bin`, `tools/Gen.java`).
   Wallpaper seeds use the Android pipeline (Celebi quantizer + ColorScheme seed scoring, ported in `Monet/`).
+- Wallpaper colours work with iOS 16+ PosterBoard wallpapers: a small SpringBoard part (`Wallpaper/`) saves the Home Screen
+  wallpaper to `/var/mobile/Library/MaterialYou/wallpaper-home.jpg` when SpringBoard starts and after each change.
 
 ## For tweak developers
 - Theme: `/var/mobile/Library/MaterialYou/theme.json` → `{"seeds", "style", "source", "hue", "colors": {"system_<token>_light|dark": "#RRGGBB|#AARRGGBB"}}`
