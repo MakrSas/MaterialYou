@@ -1,4 +1,6 @@
-// Current iOS wallpaper image: SpringBoard stores it as a CPBitmap file
+// Current iOS wallpaper image. iOS 16+ (PosterBoard): the Home Screen wallpaper that MaterialYouWallpaper saves from
+// SpringBoard (/var/mobile/Library/MaterialYou/wallpaper-home.jpg); it comes first because a phone updated from iOS 15
+// can still have its old, stale cpbitmaps. iOS 15: SpringBoard stores it as a CPBitmap file
 // (/var/mobile/Library/SpringBoard/{Home,Lock}Background.cpbitmap); AppSupport's
 // CPBitmapCreateImagesFromData decodes it. Resolved at runtime (private API).
 #import "LQSWallpaper.h"
@@ -15,6 +17,8 @@ typedef CFArrayRef (*CPBitmapCreateImagesFromDataFn)(CFDataRef data, void *unkno
         void *h = dlopen("/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport", RTLD_LAZY);
         if (h) fn = (CPBitmapCreateImagesFromDataFn)dlsym(h, "CPBitmapCreateImagesFromData");
     });
+    UIImage *poster = [UIImage imageWithContentsOfFile:@"/var/mobile/Library/MaterialYou/wallpaper-home.jpg"];
+    if (poster) return poster;
     NSString *dir = @"/var/mobile/Library/SpringBoard";
     for (NSString *name in @[@"HomeBackground.cpbitmap", @"LockBackground.cpbitmap", @"HomeBackgroundThumbnail.jpg", @"LockBackgroundThumbnail.jpg"]) {
         NSString *path = [dir stringByAppendingPathComponent:name];
